@@ -29,14 +29,16 @@ def unauthorized():
 #         return False
 #     return True
 
+
 # 只是一个辅助函数，当传入用户名密码的时候，查询数据库中是否有这条记录
 # 并且密码也正确，则返回为Ture
+'''
 def verify_password_for_token(username, password):
     user = User.query.filter_by(username=username).first()
     if not user or not user.verify_password(password):
         return False
     return True
-
+'''
 
 # 验证 token 和 用户名密码
 # 默认传的用户名密码的格式，例如用户名叫liuxin，密码是123456 在shell里加入 -u username:password
@@ -45,6 +47,7 @@ def verify_password_for_token(username, password):
 # 那么接下来就通过用户名密码的方式验证
 # 需要注意的是，传入token的方式与传账号密码的方式一样，别忘记后面加一个冒号:
 # url中加入@auth.login_required修饰符，会默认调用此函数
+'''
 @auth.verify_password
 def verify_password(username_or_token, password):
     # first try to authenticate by token
@@ -53,6 +56,7 @@ def verify_password(username_or_token, password):
         # try to authenticate with username/password
         return verify_password_for_token(username=username_or_token, password=password)
     return True
+'''
 
 
 # 定义一个产生token的方法
@@ -67,6 +71,7 @@ def generate_auth_token(expiration=36000):
 
 # 解密token，因为上面加密的是 id=1 的用户，所以解密出来的用户也是 id=1 的用户
 # 所以data的数值应该是 {'id': 1}
+'''
 def verify_auth_token(token):
     s = Serializer("tiantiankaixin")
     try:
@@ -77,3 +82,4 @@ def verify_auth_token(token):
         return None  # invalid token
     user = User.query.get(data['id'])
     return user
+'''
