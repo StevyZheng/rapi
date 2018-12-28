@@ -9,7 +9,7 @@ api_system = Api(v1_0)
 
 
 @api_system.route('/sysinfo')
-class Test(Resource):
+class Sysinfo(Resource):
     def get(self):
         tmp = Common.shell_exec("cat /etc/redhat-release").strip()
         return jsonify({
