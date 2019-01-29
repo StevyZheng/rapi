@@ -13,11 +13,11 @@ class User(db.Model):
     """
     用户表
     """
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     sex = db.Column(db.String(8))
-    # role = db.Column(db.ForeignKey)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
 
     @property
     def password(self):
@@ -35,11 +35,8 @@ class User(db.Model):
 
 
 class Role(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(164), unique=True)
-    default = db.Column(db.Integer)
-    permission = db.Column(db.Integer)
-    users = db.relationship('User', backref='role', lazy='dynamic')
 
     @staticmethod
     def insert_roles():
@@ -50,3 +47,17 @@ class Role(db.Model):
         roles = {
             'User': ()
         }
+
+
+class Api(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    url = db.Column(db.Text)
+    type_id = db.Column(db.Integer, db.ForeignKey('type.id'))
+
+
+class Type(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(64))
+    description = db.Column(db.Text)
+
+

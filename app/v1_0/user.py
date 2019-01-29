@@ -8,11 +8,20 @@ from . import api
 
 
 @api.route('/usernames')
-class UserNames(Resource):
+class Usernames(Resource):
     def get(self):
         usernames = User.query.with_entities(User.name).all()
         return jsonify({
             "usernames": usernames
+        })
+
+
+@api.route('/users')
+class Users(Resource):
+    def get(self):
+        users = User.query.all()
+        return jsonify({
+            "username"
         })
 
 
