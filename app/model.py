@@ -9,7 +9,6 @@ class Perssion:
     """
 
 
-
 class User(db.Model):
     """
     用户表
@@ -17,6 +16,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
+    sex = db.Column(db.String(8))
+    # role = db.Column(db.ForeignKey)
 
     @property
     def password(self):

@@ -21,13 +21,13 @@ class DatabaseConfig:
     TYPE = "mysql"
     NAME = "roycom"
     USERNAME = 'root'
-    PASSWORD = '123456'
+    PASSWORD = '000000'
     HOST = '127.0.0.1'
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    DatabaseConfig.NAME = "roycom_dev"
+    DatabaseConfig.NAME = "roycom"
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}/{}'.format(DatabaseConfig.USERNAME,
                                                                    DatabaseConfig.PASSWORD,
                                                                    DatabaseConfig.HOST, DatabaseConfig.NAME)
@@ -35,7 +35,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     DEBUG = True
-    DatabaseConfig.NAME = "roycom_test"
+    DatabaseConfig.NAME = "roycom"
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}/{}'.format(DatabaseConfig.USERNAME,
                                                                    DatabaseConfig.PASSWORD,
                                                                    DatabaseConfig.HOST, DatabaseConfig.NAME)
@@ -43,7 +43,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = True
-    DatabaseConfig.NAME = "roycom_product"
+    DatabaseConfig.NAME = "roycom"
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}/{}'.format(DatabaseConfig.USERNAME,
                                                                    DatabaseConfig.PASSWORD,
                                                                    DatabaseConfig.HOST, DatabaseConfig.NAME)

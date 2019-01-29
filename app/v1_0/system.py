@@ -4,11 +4,10 @@ from flask_restplus import Api, Resource
 from flask import jsonify, request
 from app.v1_0 import v1_0
 from libs.system import Common
+from . import api
 
-api_system = Api(v1_0)
 
-
-@api_system.route('/sysinfo')
+@api.route('/sysinfo')
 class Sysinfo(Resource):
     def get(self):
         tmp = Common.shell_exec("cat /etc/redhat-release").strip()
